@@ -54,7 +54,9 @@ http://talkchess.com/forum/viewtopic.php?topic_view=threads&p=710117&t=63555
 
 G. Limitations
 
-Only engines that supports UCI protocol are supported on this script, and that engine should also support the go depth command.
+Only engines that supports UCI protocol are supported on this script, and that engine should also support the go depth command. The engine should also send the time info as this is the data that will be used to calculate the total time. Example,
+
+<code>info depth 12 score cp 117 nodes 96197 nps 1577000 time 61 pv f4g5 h6g5</code>
 
 H. Example output from summary
 
