@@ -30,4 +30,14 @@ D. Output Files
 1. mos_summary.txt
 2. mos_logs.txt
 
+E. Input EPD
+
+1. The recommended input format for epd is STS or Strategic Test Suite which can be found in the following link below. However I make some changes on this test suite by adding opcodes for moves in uci format and others just for script convenience, I call it STS1-STS15_LAN_v3.epd and it is included in the package. We are grateful to Swaminathan and Dann for creating such fantastic test suite and its idea of a multi move solution with points.
+
+https://sites.google.com/site/strategictestsuite/
+
+2. I am generating this kind of epd format from latest strong grandmaster games from tournaments such as London Chess Classic 2016, TataSteel 2017, Sharjah Grand Prix 2017 and World Championships 2016. I will upload these positions once I get some of them.
+
+
+
 
