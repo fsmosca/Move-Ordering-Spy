@@ -225,12 +225,12 @@ def main(argv):
             try:
                 c8_pts = re.search('c8\s\"(.*?)\";', epd_line).group(1)
             except:
-                logging.warning('Failed to read c8 opcode')
+                logging.warning('Failed to read the c8 opcode on epd line %d\n' %(epd_cnt))
                 continue
             try:
                 c9_moves = re.search('c9\s\"(.*?)\";', epd_line).group(1)
             except:
-                logging.warning('Failed to read c9 opcode')
+                logging.warning('Failed to read the c9 opcode on epd line %d\n' %(epd_cnt))
                 continue
             evaluated_epd_cnt += 1
             lst_pts = c8_pts.split()
@@ -284,7 +284,7 @@ def main(argv):
         f.write('Total Positions     : %s\n' %(total_epd_lines))
         f.write('Evaluated Positions : %s\n' %(evaluated_epd_cnt))
         f.write('Search Depth        : %d\n' %(depth))
-        f.write('Hash                : %s\n' %(nHash))
+        f.write('Hash (mb)           : %s\n' %(nHash))
         f.write('Threads             : %s\n\n' %(nThreads))
         
         f.write('{:<32} {:>6} {:>8} {:>7} {:>9}\n'.format('Engine', 'Pts', 'MaxPts', 'Pts(%)', 'Time(ms)'))
