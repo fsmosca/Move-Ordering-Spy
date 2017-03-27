@@ -137,11 +137,11 @@ def usage():
 
 def main(argv):
 
-    print '%s v%s\n' %(APP_NAME, APP_VER)
+    print('%s v%s\n' %(APP_NAME, APP_VER))
 
     sEngine = None
     epd_input_fn = None
-    depth = None
+    depth = 8
     islogging = 0
     summary_fn = 'mos_summary.txt'
     nHash = 64
@@ -188,9 +188,6 @@ def main(argv):
         print('Error, epd file is not defined!!')
         usage()
         return
-
-    if depth is None:
-        depth = 8
     
     eng_name_id = get_engine_id_name(sEngine)
     total_epd_lines = count_position(epd_input_fn)
