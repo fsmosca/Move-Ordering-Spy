@@ -12,7 +12,6 @@ import sys
 import re
 import os
 import subprocess
-##import time
 import logging
 
 
@@ -80,8 +79,6 @@ def analyze_fen(engineName, fen, hashv, threadsv, sdepth = 8):
     
     p.stdin.write("go depth %d\n" %(sdepth))
     logging.info('>> go depth %d' %(sdepth))
-    
-    stop_time_start = time.clock()
 
     # Parse engine output
     for eline in iter(p.stdout.readline, ''):        
@@ -132,6 +129,8 @@ def usage():
     print('--epd <epd file>')
     print('--depth <search depth>')
     print('--logging <1 or 0> default is 0')
+    print('--hash <value in mb>')
+    print('--threads <number>')
     print('program_name --engine sf8.exe --epd sts.epd --depth 12 --logging 1\n')
     
 
@@ -151,7 +150,7 @@ def main(argv):
 
     # Read command line options
     try:
-        opts, args = getopt.getopt(argv, "e:f:d:l:", ["engine=", "epd=", "depth=", "logging="])
+        opts, args = getopt.getopt(argv, "e:f:d:l:", ["engine=", "epd=", "depth=", "logging=", "hash=", "threads="])
     except getopt.GetoptError as err:
         print str(err)
         usage()
@@ -165,6 +164,10 @@ def main(argv):
             depth = int(arg)
         elif opt in ("-l", "--logging"):
             islogging = int(arg)
+        elif opt in ("--hash"):
+            nHash = int(arg)
+        elif opt in ("--threads"):
+            nThreads = int(arg)
 
     if islogging > 0:
         # Logging is in overwrite mode
