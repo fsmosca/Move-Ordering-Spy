@@ -16,6 +16,15 @@ move_ordering_spy.py --engine Pluto.exe --epd STS.epd --depth 12
 
 move_ordering_spy.py --engine Pluto.exe --epd STS.epd --depth 12 --logging 1
 
+3. If you want the engine to use 128 MB use the option --hash [value in mb]
+
+move_ordering_spy.py --engine Pluto.exe --epd STS.epd --depth 12 --logging 1 --hash 128
+
+4. If you want the engine to use 2 threads use the option --threads [number]
+
+move_ordering_spy.py --engine Pluto.exe --epd STS.epd --depth 12 --logging 1 --hash 128 --threads 2
+
+
 D. Output Files
 
 1. mos_summary.txt
