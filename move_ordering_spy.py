@@ -1,0 +1,289 @@
+"""
+Move Ordering Spy
+
+It is a python script that will attempt to measure the effects of move ordering
+changes in a computer chess engine. It subjects the engine to a set of test
+positions and record how many are solved and how fast.
+
+"""
+
+import getopt
+import sys
+import re
+import os
+import subprocess
+##import time
+import logging
+
+
+APP_NAME = "Move Ordering Spy"
+APP_VER = "1.0"
+
+
+def get_engine_id_name(engineName):
+    """ Return engine id name """
+    logging.info('Get engine id name ...')
+    p = subprocess.Popen(engineName, stdin=subprocess.PIPE,
+                         stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    p.stdin.write("uci\n")
+    logging.info('>> uci')
+    for eline in iter(p.stdout.readline, ''):
+        eline = eline.strip()
+        logging.info('<< %s' % (eline))
+        if 'id name' in eline:
+            eng_name_id = ' '.join(eline.split()[2:])
+        if "uciok" in eline:
+            break
+    # Quit the engine
+    p.stdin.write("quit\n")
+    logging.info('>> quit\n')
+    p.communicate()
+
+    return eng_name_id
+
+
+def analyze_fen(engineName, fen, hashv, threadsv, sdepth = 8):
+    """ Return bestmove and time elapsed """
+    bestmove = None
+    timev = None
+    logging.info('Running engine to analyze position ...')
+    
+    p = subprocess.Popen(engineName, stdin=subprocess.PIPE,
+                         stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    p.stdin.write("uci\n")
+    logging.info('>> uci')
+    for eline in iter(p.stdout.readline, ''):
+        eline = eline.strip()
+        if "uciok" in eline:
+            logging.info('<< uciok')
+            break
+    
+    p.stdin.write("setoption name Hash value " + str(hashv) + "\n")
+    p.stdin.write("setoption name Threads value " + str(threadsv) + "\n")
+
+    logging.info('>> setoption name Hash value %d' % (hashv))
+    logging.info('>> setoption name Threads value %d' % (threadsv))
+    
+    p.stdin.write("isready\n")
+    logging.info('>> isready')
+    
+    for rline in iter(p.stdout.readline, ''):
+        rline = rline.strip()
+        logging.info('<< %s' % (rline))
+        if "readyok" in rline:
+            break
+    p.stdin.write("ucinewgame\n")
+    p.stdin.write("position fen " + fen + "\n")
+    
+    logging.info('>> ucinewgame')
+    logging.info('>> position fen %s' % (fen))
+    
+    p.stdin.write("go depth %d\n" %(sdepth))
+    logging.info('>> go depth %d' %(sdepth))
+    
+    stop_time_start = time.clock()
+
+    # Parse engine output
+    for eline in iter(p.stdout.readline, ''):        
+        eo = eline.strip()
+        if "depth" in eo and "score" in eo\
+           and "time" in eo and "pv" in eo\
+           and not "lowerbound" in eo:
+            logging.info('<< %s' %(eo))
+
+            b = eo.split(' ')
+            i = b.index("time")
+            timev = int(b[i+1])
+            
+        if "bestmove" in eo:
+            logging.info('<< %s' %(eo))
+            bestmove = ' '.join(eo.split()[1:2])
+            break            
+
+    # Quit the engine
+    p.stdin.write("quit\n")
+    logging.info('>> quit')
+    p.communicate()
+
+    logging.info('best time %d' %(timev))
+
+    return bestmove, timev
+           
+
+def delete_file(fn):
+    if os.path.isfile(fn):
+        os.remove(fn)
+
+
+def count_position(fn):
+    """ Read epd file and returns number of lines """
+    cnt = 0
+    with open(fn, 'r') as f:
+        for lines in f:
+            cnt += 1
+
+    return cnt
+
+
+def usage():
+    print('Usage:')
+    print('Options:')
+    print('--engine <engine file>')
+    print('--epd <epd file>')
+    print('--depth <search depth>')
+    print('--logging <1 or 0> default is 0')
+    print('program_name --engine sf8.exe --epd sts.epd --depth 12 --logging 1\n')
+    
+
+def main(argv):
+
+    print '%s v%s\n' %(APP_NAME, APP_VER)
+
+    sEngine = None
+    epd_input_fn = None
+    depth = None
+    islogging = 0
+    summary_fn = 'mos_summary.txt'
+    nHash = 64
+    nThreads = 1
+    total_pts = 0
+    total_time = 0
+
+    # Read command line options
+    try:
+        opts, args = getopt.getopt(argv, "e:f:d:l:", ["engine=", "epd=", "depth=", "logging="])
+    except getopt.GetoptError as err:
+        print str(err)
+        usage()
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt in ("-e", "--engine"):
+            sEngine = arg
+        elif opt in ("-f", "--epd"):
+            epd_input_fn = arg
+        elif opt in ("-d", "--depth"):
+            depth = int(arg)
+        elif opt in ("-l", "--logging"):
+            islogging = int(arg)
+
+    if islogging > 0:
+        # Logging is in overwrite mode
+        logging.basicConfig(format='%(asctime)s %(levelname)-8s %(message)s',
+                            filename='mos_logs.txt',
+                            filemode='w',
+                            level=logging.INFO)
+    logging.info('Started')
+
+    # Check presence of engine and epd file
+    if sEngine is None or not os.path.isfile(sEngine):
+        print('Error, engine is not defined!!')
+        return
+
+    if epd_input_fn is None or not os.path.isfile(epd_input_fn):
+        print('Error, epd file is not defined!!')
+        return
+
+    if depth is None:
+        depth = 8
+    
+    eng_name_id = get_engine_id_name(sEngine)
+
+    total_epd_lines = count_position(epd_input_fn)
+
+    logging.info('Test file : %s' %(epd_input_fn))
+    logging.info('Engine    : %s\n' %(eng_name_id))
+
+    # Open epd file for reading
+    epd_cnt = 0
+    evaluated_epd_cnt = 0
+    with open(epd_input_fn, 'r') as epdfo:
+        for epd_line in epdfo:
+            epd_cnt += 1
+            epd_line = epd_line.strip()
+            logging.info('Test Pos %d: %s' %(epd_cnt, epd_line))
+            epd = ' '.join(epd_line.split(' ')[0:4])
+            strFEN = epd + ' 0 1'
+
+            # Print progress to console
+            print('Pos %d/%d \r' %(epd_cnt, total_epd_lines)),
+                
+            # Analyze position
+            bm, bt = analyze_fen(sEngine, strFEN, nHash, nThreads, depth)
+
+            # Evaluate engine bestmove and time
+            try:
+                c8_pts = re.search('c8\s\"(.*?)\";', epd_line).group(1)
+            except:
+                logging.warning('Failed to read c8 opcode')
+                continue
+            try:
+                c9_moves = re.search('c9\s\"(.*?)\";', epd_line).group(1)
+            except:
+                logging.warning('Failed to read c9 opcode')
+                continue
+            evaluated_epd_cnt += 1
+            lst_pts = c8_pts.split()
+            lst_moves = c9_moves.split()
+            logging.info('target moves: %s' %(lst_moves))
+            logging.info('move points : %s' %(lst_pts))
+            found = False
+            best_i = None
+            for i, n in enumerate(lst_moves):
+                if n == bm:
+                    best_i = i
+                    found = True
+                    break
+            if found:
+                logging.info('success!!')
+                total_time += bt
+                for j, n in enumerate(lst_pts):
+                    if j == best_i:
+                        pts = int(n)
+                        total_pts += pts
+                        logging.info('current pts %d\n' %(total_pts))
+                        break
+            else:
+                logging.info('failure!!')
+                logging.info('current pts %d\n' %(total_pts))
+
+    max_pts_per_pos = 10
+    pos_max_pts = evaluated_epd_cnt * max_pts_per_pos
+    rate = 0.0
+    if pos_max_pts:
+        rate = float(100*total_pts)/pos_max_pts
+    
+    # Write results summary to console
+    print('Total Positions        : %d' %(total_epd_lines))
+    print('Evaluated Positions    : %d' %(evaluated_epd_cnt))
+    print('Max Points             : %d' %(pos_max_pts))
+    print('Points Gained          : %d' %(total_pts))
+    print('Points Gained Rate (%s) : %0.2f' %('%', rate))
+    print('Total Time (ms)        : %d\n' %(total_time))
+
+    logging.info('Total Positions        : %d' %(total_epd_lines))
+    logging.info('Evaluated Positions    : %d' %(evaluated_epd_cnt))
+    logging.info('Max Points             : %d' %(pos_max_pts))
+    logging.info('Points Gained          : %d' %(total_pts))
+    logging.info('Points Gained Rate (%s) : %0.2f' %('%', rate))
+    logging.info('Total Time (ms)        : %d\n' %(total_time))
+
+    # Write to summary file
+    with open(summary_fn, "a") as f:            
+        f.write('Test File           : %s\n' %(epd_input_fn))
+        f.write('Total Positions     : %s\n' %(total_epd_lines))
+        f.write('Evaluated Positions : %s\n' %(evaluated_epd_cnt))
+        f.write('Search Depth        : %d\n\n' %(depth))
+        
+        f.write('{:<32} {:>6} {:>8} {:>7} {:>9}\n'.format('Engine', 'Pts', 'MaxPts', 'Pts(%)', 'Time(ms)'))
+
+        f.write('{:<32} {:>6} {:>8} {:>7.2f} {:>9}\n\n'.format(eng_name_id,
+                                                                total_pts,
+                                                                pos_max_pts,
+                                                                rate,
+                                                                total_time))
+
+    print "\nDone!!"
+
+
+if __name__ == "__main__":
+    main(sys.argv[1:])
