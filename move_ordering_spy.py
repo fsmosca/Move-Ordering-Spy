@@ -21,7 +21,7 @@ APP_VER = "1.0"
 
 def get_engine_id_name(engineName):
     """ Return engine id name """
-    logging.info('Get engine id name ...')
+    logging.info('Run engine to get its id name ...')
     p = subprocess.Popen(engineName, stdin=subprocess.PIPE,
                          stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     p.stdin.write("uci\n")
@@ -123,15 +123,16 @@ def count_position(fn):
 
 
 def usage():
+    """ Sample command line and options """
     print('Usage:')
+    print('app_name --engine sf8.exe --epd sts.epd --depth 12 --logging 1')
     print('Options:')
     print('--engine <engine file>')
     print('--epd <epd file>')
-    print('--depth <search depth>')
+    print('--depth <search depth> default is 8')
     print('--logging <1 or 0> default is 0')
-    print('--hash <value in mb>')
-    print('--threads <number>')
-    print('program_name --engine sf8.exe --epd sts.epd --depth 12 --logging 1\n')
+    print('--hash <value in mb> default is 64')
+    print('--threads <number> default is 1')    
     
 
 def main(argv):
@@ -180,18 +181,25 @@ def main(argv):
     # Check presence of engine and epd file
     if sEngine is None or not os.path.isfile(sEngine):
         print('Error, engine is not defined!!')
+        usage()
         return
 
     if epd_input_fn is None or not os.path.isfile(epd_input_fn):
         print('Error, epd file is not defined!!')
+        usage()
         return
 
     if depth is None:
         depth = 8
     
     eng_name_id = get_engine_id_name(sEngine)
-
     total_epd_lines = count_position(epd_input_fn)
+
+    # Show in console
+    print('Test file : %s' %(epd_input_fn))
+    print('Engine    : %s' %(eng_name_id))
+    print('Hash (mb) : %d' %(nHash))
+    print('Threads   : %d\n' %(nThreads))
 
     logging.info('Test file : %s' %(epd_input_fn))
     logging.info('Engine    : %s\n' %(eng_name_id))
@@ -275,11 +283,13 @@ def main(argv):
         f.write('Test File           : %s\n' %(epd_input_fn))
         f.write('Total Positions     : %s\n' %(total_epd_lines))
         f.write('Evaluated Positions : %s\n' %(evaluated_epd_cnt))
-        f.write('Search Depth        : %d\n\n' %(depth))
+        f.write('Search Depth        : %d\n' %(depth))
+        f.write('Hash                : %s\n' %(nHash))
+        f.write('Threads             : %s\n\n' %(nThreads))
         
         f.write('{:<32} {:>6} {:>8} {:>7} {:>9}\n'.format('Engine', 'Pts', 'MaxPts', 'Pts(%)', 'Time(ms)'))
 
-        f.write('{:<32} {:>6} {:>8} {:>7.2f} {:>9}\n\n'.format(eng_name_id,
+        f.write('{:<32} {:>6} {:>8} {:>7.2f} {:>9}\n\n\n'.format(eng_name_id,
                                                                 total_pts,
                                                                 pos_max_pts,
                                                                 rate,
