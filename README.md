@@ -1,6 +1,6 @@
 A. Description
 
-It is a python script that will attempt to measure the effects of move ordering changes in a computer chess engine. It will actually test the engine with a set of specialized epd suite similar to STS test suite then record how many points it gets and how long its takes to finish the tests.
+It is a python script or equivalent converted exe file that will attempt to measure the effects of move ordering changes in a computer chess engine. It actually tests the engine with a set of specialized epd suite similar to STS-Strategic Test Suite then record how many points it gets and how long its takes to finish the tests.
 
 B. Usage
 
@@ -24,6 +24,14 @@ move_ordering_spy.py --engine Pluto.exe --epd STS.epd --depth 12 --logging 1 --h
 
 move_ordering_spy.py --engine Pluto.exe --epd STS.epd --depth 12 --logging 1 --hash 128 --threads 2
 
+5. It also supports paths for engine and epd file
+
+move_ordering_spy.py --engine "c:\chess\engines\UCI\Pluto\Pluto.exe" --epd "c:\chess\Test Suite\STS\STS.epd" --depth 12
+
+6. If you don't have python installed, and you are using windows you can use the exe file instead.
+
+move_ordering_spy.exe --engine Pluto.exe --epd STS.epd --depth 12 --logging 1
+
 
 D. Output Files
 
@@ -44,15 +52,22 @@ This script was created based from the discussion in CCC on testing move orderin
 
 http://talkchess.com/forum/viewtopic.php?topic_view=threads&p=710117&t=63555
 
-G. Example output from summary
+G. Limitations
+
+Only engines that supports UCI protocol are supported on this script, and that engine should also support the go depth command.
+
+H. Example output from summary
+
 <pre>
 Test File           : STS1-STS15_LAN_v3.epd
 Total Positions     : 1500
 Evaluated Positions : 1500
-Search Depth        : 12
+Search Depth        : 4
+Hash                : 128
+Threads             : 1
 
 Engine                              Pts   MaxPts  Pts(%)  Time(ms)
-Stockfish 8 64 POPCNT             11888    15000   79.25    181521
+Stockfish 8 64 POPCNT              6727    15000   44.85      1663
 </pre>
 
 
