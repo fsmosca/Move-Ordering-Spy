@@ -52,8 +52,9 @@ https://sites.google.com/site/strategictestsuite/
     b. LondonChessClassic2016_v1.epd [150 positions]<br>
     c. SharjahGrandPrix2017_v1.epd [150 positions]<br>
     d. WorldCh2016_v1.epd [150 positions]<br>
+    e. TataSteel2017_v2.epd [200 positions]<br>
     
-    The epd's in (b) (c) and (d) are analyzed by Stockfish 260317 64 POPCNT at 3 minutes/pos at multipv 5. The points are generated based on search score of Stockfish and only the top 4 are saved in the epd. Only those positions whose best move is not easy are saved.
+    The epd's starting from (b) were analyzed by Stockfish 260317 64 POPCNT at 3 minutes/pos at multipv 5. The points are generated based on search score of Stockfish and only the top 4 are saved in the epd. Only those positions whose best moves are not easy (according to Stockfish) were saved.
 
 F. Script idea
 
