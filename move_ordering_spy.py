@@ -230,7 +230,13 @@ def main(argv):
             epd_line = epd_line.strip()
             logging.info('Test Pos %d: %s' %(epd_cnt, epd_line))
             epd = ' '.join(epd_line.split(' ')[0:4])
-            strFEN = epd + ' 0 1'  # Fix Me, there can be epd with fmvc opcode
+
+            # Search for hmvc opcode in input epd file
+            if 'hmvc' in epd_line:
+                hmvc = re.search('hmvc\s(.*?);', epd_line).group(1)
+            else:
+                hmvc = '0'                
+            strFEN = epd + ' ' + hmvc + ' 1'
 
             # Print progress to console
             print('Pos %d/%d \r' %(epd_cnt, total_epd_lines)),
