@@ -165,6 +165,7 @@ def main(argv):
     nThreads = 1
     total_pts = 0
     total_time = 0
+    max_epd_points = 0
 
     # Read command line options
     try:
@@ -257,6 +258,7 @@ def main(argv):
                 continue
             evaluated_epd_cnt += 1
             lst_pts = c8_pts.split()
+            max_epd_points += int(lst_pts[0])
             lst_moves = c9_moves.split()
             logging.info('target moves: %s' %(lst_moves))
             logging.info('move points : %s' %(lst_pts))
@@ -280,23 +282,21 @@ def main(argv):
                 logging.info('failure!!')
                 logging.info('current pts %d\n' %(total_pts))
 
-    max_pts_per_pos = 10  # Fix Me, there can be an epd line with different max points
-    pos_max_pts = evaluated_epd_cnt * max_pts_per_pos
     rate = 0.0
-    if pos_max_pts:
-        rate = float(100*total_pts)/pos_max_pts
+    if max_epd_points:
+        rate = float(100*total_pts)/max_epd_points
     
     # Write results summary to console
     print('Total Positions        : %d' %(total_epd_lines))
     print('Evaluated Positions    : %d' %(evaluated_epd_cnt))
-    print('Max Points             : %d' %(pos_max_pts))
+    print('Max Points             : %d' %(max_epd_points))
     print('Points Gained          : %d' %(total_pts))
     print('Points Gained Rate (%s) : %0.2f' %('%', rate))
     print('Total Time (ms)        : %d\n' %(total_time))
 
     logging.info('Total Positions        : %d' %(total_epd_lines))
     logging.info('Evaluated Positions    : %d' %(evaluated_epd_cnt))
-    logging.info('Max Points             : %d' %(pos_max_pts))
+    logging.info('Max Points             : %d' %(max_epd_points))
     logging.info('Points Gained          : %d' %(total_pts))
     logging.info('Points Gained Rate (%s) : %0.2f' %('%', rate))
     logging.info('Total Time (ms)        : %d\n' %(total_time))
@@ -314,7 +314,7 @@ def main(argv):
 
         f.write('{:<32} {:>6} {:>8} {:>7.2f} {:>9}\n\n\n'.format(eng_name_id,
                                                                 total_pts,
-                                                                pos_max_pts,
+                                                                max_epd_points,
                                                                 rate,
                                                                 total_time))
 
