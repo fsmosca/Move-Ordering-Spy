@@ -82,6 +82,7 @@ def analyze_fen(engineName, fen, hashv, threadsv, sdepth = 8):
     p.stdin.write("go depth %d\n" %(sdepth))
     logging.info('>> go depth %d' %(sdepth))
 
+    # Record time for engines that do not sent time info
     time_start = time.clock()
 
     # Parse engine output
@@ -101,6 +102,7 @@ def analyze_fen(engineName, fen, hashv, threadsv, sdepth = 8):
         if "bestmove" in eo:
             logging.info('<< %s' %(eo))
             bestmove = ' '.join(eo.split()[1:2])
+            time_elapsed = time.clock() - time_start
             break            
 
     # Quit the engine
