@@ -211,10 +211,12 @@ def main(argv):
     total_epd_lines = count_position(epd_input_fn)
 
     # Show in console
-    print('Test file : %s' %(epd_input_fn))
-    print('Engine    : %s' %(eng_name_id))
-    print('Hash (mb) : %d' %(nHash))
-    print('Threads   : %d\n' %(nThreads))
+    print('Test file    : %s' %(epd_input_fn))
+    print('Positions    : %s' %(total_epd_lines))
+    print('Engine       : %s' %(eng_name_id))
+    print('Hash (mb)    : %d' %(nHash))
+    print('Threads      : %d' %(nThreads))
+    print('Search depth : %d\n' %(depth))
 
     logging.info('Test file : %s' %(epd_input_fn))
     logging.info('Engine    : %s\n' %(eng_name_id))
