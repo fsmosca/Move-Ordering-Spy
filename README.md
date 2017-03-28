@@ -46,6 +46,14 @@ https://sites.google.com/site/strategictestsuite/
 
 2. I am generating this kind of epd format from latest strong grandmaster games from tournaments such as London Chess Classic 2016, TataSteel 2017, Sharjah Grand Prix 2017 and World Championships 2016. I will upload these positions once I get some of them.
 
+3. Epd test suites in the pack
+
+    a. STS1-STS15_LAN_v3.epd [1500 positions]<br> 
+    b. LondonChessClassic2016_v1.epd [150 positions]<br>
+    c. SharjahGrandPrix2017_v1.epd [150 positions]<br>
+    
+    The epd's in (b) and (c) are analyzed by Stockfish 260317 64 POPCNT at 3 minutes/pos at multipv 5. The points are generated based on search score of Stockfish and only the top 4 are saved in the epd. Only those positions whose best move is not easy are saved.
+
 F. Script idea
 
 This script was created based from the discussion in CCC on testing move ordering improvement.
