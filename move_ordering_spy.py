@@ -13,10 +13,11 @@ import re
 import os
 import subprocess
 import logging
+import time
 
 
 APP_NAME = "Move Ordering Spy"
-APP_VER = "1.0"
+APP_VER = "1.1"
 
 
 def get_engine_id_name(engineName):
@@ -45,6 +46,7 @@ def analyze_fen(engineName, fen, hashv, threadsv, sdepth = 8):
     """ Return bestmove and time elapsed """
     bestmove = None
     timev = None
+    time_elapsed = 0
     logging.info('Running engine to analyze position ...')
     
     p = subprocess.Popen(engineName, stdin=subprocess.PIPE,
@@ -80,17 +82,21 @@ def analyze_fen(engineName, fen, hashv, threadsv, sdepth = 8):
     p.stdin.write("go depth %d\n" %(sdepth))
     logging.info('>> go depth %d' %(sdepth))
 
+    time_start = time.clock()
+
     # Parse engine output
     for eline in iter(p.stdout.readline, ''):        
         eo = eline.strip()
-        if "depth" in eo and "score" in eo\
-           and "time" in eo and "pv" in eo\
-           and not "lowerbound" in eo:
+        if "depth" in eo and "score" in eo and "time" in eo and "pv" in eo\
+               and not "lowerbound" in eo and not "upperbound" in eo:
             logging.info('<< %s' %(eo))
-
             b = eo.split(' ')
             i = b.index("time")
             timev = int(b[i+1])
+        # Also display line info even if there are no time info
+        elif "depth" in eo and "score" in eo and "pv" in eo\
+               and not "lowerbound" in eo and not "upperbound" in eo:
+            logging.info('<< %s' %(eo))
             
         if "bestmove" in eo:
             logging.info('<< %s' %(eo))
@@ -101,6 +107,15 @@ def analyze_fen(engineName, fen, hashv, threadsv, sdepth = 8):
     p.stdin.write("quit\n")
     logging.info('>> quit')
     p.communicate()
+
+    # Use time_elapsed if engine does not send time info
+    if timev is None:
+        logging.warning('This engine does not send time info!!')
+        logging.info('Wall clock elapsed time will be used.')
+        if time_elapsed == 0:
+            logging.warning('This engine searches faster, time elapsed is zero!!')
+            logging.info('Perhaps consider increasing the search depth.')
+        timev = time_elapsed * 1000  # Convert time_elapsed to ms
 
     logging.info('best time %d' %(timev))
 
@@ -163,6 +178,7 @@ def main(argv):
             epd_input_fn = arg
         elif opt in ("-d", "--depth"):
             depth = int(arg)
+            depth = max(1, depth)
         elif opt in ("-l", "--logging"):
             islogging = int(arg)
         elif opt in ("--hash"):
