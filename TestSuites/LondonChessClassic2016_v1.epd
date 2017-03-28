@@ -51,9 +51,6 @@ r2qk2r/3nbpp1/p2p4/1p1Ppb1p/5P2/4B1PP/PPP1N1B1/R2Q1RK1 b kq - acd 24; bm Rc8; ec
 2rq1rk1/4bppb/R2p4/1p1Pn2N/3B3p/2P3PP/1P4B1/3Q1RK1 b - - acd 26; bm hxg3; eco "B90"; Ae "Stockfish 260317 64 POPCNT"; c6 "0 0 -8 -19"; c7 "hxg3 Bg6 Qd7 Bg5"; c8 "10 10 8 7"; c9 "h4g3 h7g6 d8d7 e7g5";
 2rq1rk1/4bpp1/R2p2b1/1p1Pn2N/3B3p/2P3PP/1P4B1/3Q1RK1 w - - acd 25; bm Nf4; eco "B90"; Ae "Stockfish 260317 64 POPCNT"; c6 "0 -7 -13 -13"; c7 "Nf4 Kh1 Rb6 Bb6"; c8 "10 8 6 6"; c9 "h5f4 g1h1 a6b6 d4b6";
 2rq1rk1/4bpp1/R2p2b1/1p1Pn3/3B1N1p/2P3PP/1P4B1/3Q1RK1 b - - acd 25; bm Bh7; eco "B90"; Ae "Stockfish 260317 64 POPCNT"; c6 "0 -16 -45 -45"; c7 "Bh7 Bf5 Ra8 hxg3"; c8 "10 7 3 3"; c9 "g6h7 g6f5 c8a8 h4g3";
-2rq1rk1/4bppb/R2p4/1p1Pn3/3B1N1p/2P3PP/1P4B1/3Q1RK1 w - - acd 25; bm Nh5; eco "B90"; Ae "Stockfish 260317 64 POPCNT"; c6 "0 0 0 -8"; c7 "Nh5 Qe1 Bb6 Qe2"; c8 "10 10 10 7"; c9 "f4h5 d1e1 d4b6 d1e2";
-2rq1rk1/4bppb/R2p4/1p1Pn2N/3B3p/2P3PP/1P4B1/3Q1RK1 b - - acd 26; bm hxg3; eco "B90"; Ae "Stockfish 260317 64 POPCNT"; c6 "0 0 -8 -19"; c7 "hxg3 Bg6 Qd7 Bg5"; c8 "10 10 8 7"; c9 "h4g3 h7g6 d8d7 e7g5";
-2rq1rk1/4bpp1/R2p2b1/1p1Pn2N/3B3p/2P3PP/1P4B1/3Q1RK1 w - - acd 25; bm Nf4; eco "B90"; Ae "Stockfish 260317 64 POPCNT"; c6 "0 -7 -13 -13"; c7 "Nf4 Kh1 Rb6 Bb6"; c8 "10 8 6 6"; c9 "h5f4 g1h1 a6b6 d4b6";
 r3k2r/bpp1qp2/p1npbn1p/4p1p1/4P2B/1BPPNN2/PP3PPP/R2QK2R w KQkq - acd 24; bm Bg3; eco "C50"; Ae "Stockfish 260317 64 POPCNT"; c6 "-14 -41 -93 -151"; c7 "Bg3 Bxe6 Nd5 Nxg5"; c8 "10 8 6 4"; c9 "h4g3 b3e6 e3d5 f3g5";
 r3k2r/bpp1qp2/p1npbn1p/4p1p1/4P3/1BPPNNB1/PP3PPP/R2QK2R b KQkq - acd 25; bm h5; eco "C50"; Ae "Stockfish 260317 64 POPCNT"; c6 "35 19 16 12"; c7 "h5 Bxb3 Bxe3 O-O-O"; c8 "10 3 2 1"; c9 "h6h5 e6b3 a7e3 e8c8";
 2kr3r/bpp1qp2/p1npbn1p/4p1p1/4P3/1BPPNNB1/PP3PPP/R2QK2R w KQ - acd 23; bm O-O; eco "C50"; Ae "Stockfish 260317 64 POPCNT"; c6 "-22 -26 -43 -49"; c7 "O-O Ba4 Qc2 Bc2"; c8 "10 8 4 2"; c9 "e1g1 b3a4 d1c2 b3c2";
@@ -148,3 +145,6 @@ r3kb1r/1p1b1pp1/pqn1p2p/3pP2P/1n1P4/N1B2N1R/PP2BPP1/R2QK3 b Qkq - acd 25; bm f6;
 1k1rbb1r/1p6/pqn1pp1p/3p3P/1n1P4/N1B2NR1/PP1QBPP1/R4K2 w - - acd 23; bm Nb1; eco "C02"; Ae "Stockfish 260317 64 POPCNT"; c6 "-15 -39 -58 -65"; c7 "Nb1 Ne1 Rh3 Nh4"; c8 "10 7 5 4"; c9 "a3b1 f3e1 g3h3 f3h4";
 1k1rbb1r/1p6/pqn1pp1p/3p3P/1n1P3N/N1B3R1/PP1QBPP1/R4K2 b - - acd 25; bm Bd6; eco "C02"; Ae "Stockfish 260317 64 POPCNT"; c6 "69 62 48 34"; c7 "Bd6 e5 Rh7 Qc7"; c8 "10 9 7 5"; c9 "f8d6 e6e5 h8h7 b6c7";
 1k1rb2r/1p4R1/pqnbpp1p/3p3P/1n1P3N/N1B5/PP1QBPP1/R4K2 b - - acd 24; bm e5; eco "C02"; Ae "Stockfish 260317 64 POPCNT"; c6 "64 54 0 0"; c7 "e5 Bf8 Rd7 Rf8"; c8 "10 8 1 1"; c9 "e6e5 d6f8 d8d7 h8f8";
+r1b2rk1/p2pppbp/1pn2np1/8/2P5/2NN2P1/PP2PPBP/R1B2RK1 w - - acd 24; bm Rd1; eco "A49"; Ae "Stockfish 260317 64 POPCNT"; c6 "42 41 40 37"; c7 "Rd1 Bg5 b3 Bf4"; c8 "10 9 8 5"; c9 "f1d1 c1g5 b2b3 c1f4";
+r4rk1/p2pppbp/bpn2np1/6B1/2P5/2NN2P1/PP2PPBP/R4RK1 w - - acd 25; bm b3; eco "A49"; Ae "Stockfish 260317 64 POPCNT"; c6 "45 23 -10 -24"; c7 "b3 Nb5 c5 b4"; c8 "10 7 4 2"; c9 "b2b3 c3b5 c4c5 b2b4";
+r4rk1/p2pppbp/bpn2np1/6B1/2P5/1PNN2P1/P3PPBP/R4RK1 b - - acd 25; bm e6; eco "A49"; Ae "Stockfish 260317 64 POPCNT"; c6 "-45 -50 -52 -52"; c7 "e6 h6 Rfe8 Rad8"; c8 "10 5 3 3"; c9 "e7e6 h7h6 f8e8 a8d8";
