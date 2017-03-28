@@ -210,7 +210,7 @@ def main(argv):
             epd_line = epd_line.strip()
             logging.info('Test Pos %d: %s' %(epd_cnt, epd_line))
             epd = ' '.join(epd_line.split(' ')[0:4])
-            strFEN = epd + ' 0 1'
+            strFEN = epd + ' 0 1'  # Fix Me, there can be epd with fmvc opcode
 
             # Print progress to console
             print('Pos %d/%d \r' %(epd_cnt, total_epd_lines)),
@@ -254,7 +254,7 @@ def main(argv):
                 logging.info('failure!!')
                 logging.info('current pts %d\n' %(total_pts))
 
-    max_pts_per_pos = 10
+    max_pts_per_pos = 10  # Fix Me, there can be an epd line with different max points
     pos_max_pts = evaluated_epd_cnt * max_pts_per_pos
     rate = 0.0
     if pos_max_pts:
@@ -292,7 +292,7 @@ def main(argv):
                                                                 rate,
                                                                 total_time))
 
-    print "\nDone!!"
+    print('Done!!')
 
 
 if __name__ == "__main__":
