@@ -49,7 +49,7 @@ https://sites.google.com/site/strategictestsuite/
 3. Epd test suites in the pack
 
     a. STS1-STS15_LAN_v3.epd [1500 positions]<br> 
-    b. LondonChessClassic2016.epd [350 positions]<br>
+    b. LondonChessClassic2016.epd [460 positions]<br>
     c. SharjahGrandPrix2017.epd [400 positions]<br>
     d. WorldCh2016.epd [260 positions]<br>
     e. TataSteel2017.epd [480 positions]<br>
