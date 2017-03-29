@@ -165,7 +165,7 @@ def main(argv):
     nThreads = 1
     total_pts = 0
     total_time = 0
-    max_epd_points = 0
+    max_evaluated_pos_pts = 0
 
     # Read command line options
     try:
@@ -258,7 +258,7 @@ def main(argv):
                 continue
             evaluated_epd_cnt += 1
             lst_pts = c8_pts.split()
-            max_epd_points += int(lst_pts[0])
+            max_evaluated_pos_pts += int(lst_pts[0])
             lst_moves = c9_moves.split()
             logging.info('target moves: %s' %(lst_moves))
             logging.info('move points : %s' %(lst_pts))
@@ -283,38 +283,39 @@ def main(argv):
                 logging.info('current pts %d\n' %(total_pts))
 
     rate = 0.0
-    if max_epd_points:
-        rate = float(100*total_pts)/max_epd_points
+    if max_evaluated_pos_pts:
+        rate = float(100*total_pts)/max_evaluated_pos_pts
     
     # Write results summary to console
     print('Total Positions        : %d' %(total_epd_lines))
     print('Evaluated Positions    : %d' %(evaluated_epd_cnt))
-    print('Max Points             : %d' %(max_epd_points))
+    print('Max Evaluated Points   : %d' %(max_evaluated_pos_pts))
     print('Points Gained          : %d' %(total_pts))
     print('Points Gained Rate (%s) : %0.2f' %('%', rate))
     print('Total Time (ms)        : %d\n' %(total_time))
 
     logging.info('Total Positions        : %d' %(total_epd_lines))
     logging.info('Evaluated Positions    : %d' %(evaluated_epd_cnt))
-    logging.info('Max Points             : %d' %(max_epd_points))
+    logging.info('Max Evaluated Points   : %d' %(max_evaluated_pos_pts))
     logging.info('Points Gained          : %d' %(total_pts))
     logging.info('Points Gained Rate (%s) : %0.2f' %('%', rate))
     logging.info('Total Time (ms)        : %d\n' %(total_time))
 
     # Write to summary file
     with open(summary_fn, "a") as f:            
-        f.write('Test File           : %s\n' %(epd_input_fn))
-        f.write('Total Positions     : %s\n' %(total_epd_lines))
-        f.write('Evaluated Positions : %s\n' %(evaluated_epd_cnt))
-        f.write('Search Depth        : %d\n' %(depth))
-        f.write('Hash (mb)           : %s\n' %(nHash))
-        f.write('Threads             : %s\n\n' %(nThreads))
+        f.write('Test File                 : %s\n' %(epd_input_fn))
+        f.write('Total Positions           : %s\n' %(total_epd_lines))
+        f.write('Evaluated Positions       : %s\n' %(evaluated_epd_cnt))
+        f.write('Max Evaluated Points      : %d\n' %(max_evaluated_pos_pts))
+        f.write('Search Depth              : %d\n' %(depth))
+        f.write('Hash (mb)                 : %s\n' %(nHash))
+        f.write('Threads                   : %s\n\n' %(nThreads))
         
         f.write('{:<32} {:>6} {:>8} {:>7} {:>9}\n'.format('Engine', 'Pts', 'MaxPts', 'Pts(%)', 'Time(ms)'))
 
         f.write('{:<32} {:>6} {:>8} {:>7.2f} {:>9}\n\n\n'.format(eng_name_id,
                                                                 total_pts,
-                                                                max_epd_points,
+                                                                max_evaluated_pos_pts,
                                                                 rate,
                                                                 total_time))
 
