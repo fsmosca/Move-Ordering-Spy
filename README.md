@@ -49,15 +49,9 @@ https://sites.google.com/site/strategictestsuite/
 3. Epd test suites in the pack
 
     a. STS1-STS15_LAN_v3.epd [1500 positions]<br> 
-    b. LondonChessClassic2016.epd [460 positions]<br>
-    c. SharjahGrandPrix2017.epd [530 positions]<br>
-    d. WorldCh2016.epd [260 positions]<br>
-    e. TataSteel2017.epd [480 positions]<br>
-    f. GashimovMem2016.epd [310 positions]<br>
-    g. RussianCh2016.epd [280 positions]<br>
-    h. WorldChCand2016.epd [50 positions]<br>
+    b. move_ordering_suite.epd [2019 positions]<br>
     
-    The epd's starting from (b) were analyzed by Stockfish 260317 64 POPCNT at 3 minutes/pos at multipv 5. The points of every epd (1 to 10) which can be found in c8 opcode, were generated based on search score of Stockfish, only the top 4 are saved in the epd and only those positions whose top 1 moves were not easy (according to Stockfish) were saved. Also the top 1 move should have a score of from -0.5 to +1.5 in order for it to be included in the test set. Position selection start at move 12 till move 30 in every game.
+    move_ordering_suite.epd are from positions of games from strong tournaments like WCh2016, LondonCC2016, WChCand2016 and others, positions were analyzed by Stockfish 260317 64 POPCNT at 3 minutes/pos at multipv 5. The points of every epd (1 to 10) which can be found in c8 opcode, were generated based on search score of Stockfish, only the top 4 are saved in the epd and only those positions whose top 1 moves were not easy (according to Stockfish) were saved. Also the top 1 move should have a score of from -0.5 to +1.5 in order for it to be included in the test set. Position selection start at move 12 till move 30 in every game.
 
 F. Script idea
 
