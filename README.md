@@ -53,7 +53,7 @@ https://sites.google.com/site/strategictestsuite/
     c. SharjahGrandPrix2017.epd [400 positions]<br>
     d. WorldCh2016.epd [260 positions]<br>
     e. TataSteel2017.epd [480 positions]<br>
-    f. GashimovMem2016.epd [220 positions]<br>
+    f. GashimovMem2016.epd [310 positions]<br>
     g. RussianCh2016.epd [280 positions]<br>
     h. WorldChCand2016.epd [30 positions]<br>
     
