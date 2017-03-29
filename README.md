@@ -1,6 +1,6 @@
 A. Description
 
-It is a python script or equivalent converted exe file that will attempt to measure the effects of move ordering changes in a computer chess engine. It actually tests the engine with a set of specialized epd suite similar to STS-Strategic Test Suite then record how many points it gets and how long its takes to finish the tests.
+Move Ordering Spy is just a python script or equivalent converted exe file that will attempt to measure the effects of move ordering changes in a computer chess engine. It actually tests the engine with a set of specialized epd suite similar to STS-Strategic Test Suite then record how many points it gets and how long its takes to finish the tests.
 
 B. Usage
 
@@ -44,17 +44,19 @@ E. Input EPD
 
 https://sites.google.com/site/strategictestsuite/
 
-2. I am generating this kind of epd format from latest strong grandmaster games from tournaments such as London Chess Classic 2016, TataSteel 2017, Sharjah Grand Prix 2017 and World Championships 2016. I will upload these positions once I get some of them.
+2. I am generating this kind of epd format from latest strong grandmaster games from tournaments such as London Chess Classic 2016, TataSteel 2017, Sharjah Grand Prix 2017 and World Championships 2016 and others. I will upload these positions once I get some of them.
 
 3. Epd test suites in the pack
 
     a. STS1-STS15_LAN_v3.epd [1500 positions]<br> 
-    b. LondonChessClassic2016_v1.epd [150 positions]<br>
-    c. SharjahGrandPrix2017_v1.epd [150 positions]<br>
-    d. WorldCh2016_v1.epd [150 positions]<br>
-    e. TataSteel2017_v2.epd [200 positions]<br>
+    b. LondonChessClassic2016.epd [350 positions]<br>
+    c. SharjahGrandPrix2017.epd [240 positions]<br>
+    d. WorldCh2016.epd [200 positions]<br>
+    e. TataSteel2017.epd [200 positions]<br>
+    f. GashimovMem2016.epd [220 positions]<br>
+    g. RussianCh2016.epd [200 positions]<br>
     
-    The epd's starting from (b) were analyzed by Stockfish 260317 64 POPCNT at 3 minutes/pos at multipv 5. The points are generated based on search score of Stockfish and only the top 4 are saved in the epd. Only those positions whose best moves are not easy (according to Stockfish) were saved.
+    The epd's starting from (b) were analyzed by Stockfish 260317 64 POPCNT at 3 minutes/pos at multipv 5. The points of every epd (1 to 10) which can be found in c8 opcode, were generated based on search score of Stockfish and only the top 4 are saved in the epd and only those positions whose top 1 moves were not easy (according to Stockfish) were saved. Also the top 1 move should have a score of -0.5/1.5 in order for it to be included in the test set.
 
 F. Script idea
 
@@ -71,15 +73,16 @@ Only engines that supports UCI protocol are supported on this script, and that e
 H. Example output from summary
 
 <pre>
-Test File           : STS1-STS15_LAN_v3.epd
-Total Positions     : 1500
-Evaluated Positions : 1500
-Search Depth        : 4
-Hash                : 128
-Threads             : 1
+Test File                 : LondonChessClassic2016_v3.epd
+Total Positions           : 350
+Evaluated Positions       : 350
+Max Evaluated Points      : 3500
+Search Depth              : 12
+Hash (mb)                 : 128
+Threads                   : 1
 
 Engine                              Pts   MaxPts  Pts(%)  Time(ms)
-Stockfish 8 64 POPCNT              6727    15000   44.85      1663
+Deuterium v2017.1.35.353           2153     3500   61.51    106679
 </pre>
 
 
