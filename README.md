@@ -55,7 +55,7 @@ https://sites.google.com/site/strategictestsuite/
     e. TataSteel2017.epd [480 positions]<br>
     f. GashimovMem2016.epd [310 positions]<br>
     g. RussianCh2016.epd [280 positions]<br>
-    h. WorldChCand2016.epd [30 positions]<br>
+    h. WorldChCand2016.epd [50 positions]<br>
     
     The epd's starting from (b) were analyzed by Stockfish 260317 64 POPCNT at 3 minutes/pos at multipv 5. The points of every epd (1 to 10) which can be found in c8 opcode, were generated based on search score of Stockfish, only the top 4 are saved in the epd and only those positions whose top 1 moves were not easy (according to Stockfish) were saved. Also the top 1 move should have a score of from -0.5 to +1.5 in order for it to be included in the test set. Position selection start at move 12 till move 30 in every game.
 
