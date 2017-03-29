@@ -50,7 +50,7 @@ https://sites.google.com/site/strategictestsuite/
 
     a. STS1-STS15_LAN_v3.epd [1500 positions]<br> 
     b. LondonChessClassic2016.epd [460 positions]<br>
-    c. SharjahGrandPrix2017.epd [400 positions]<br>
+    c. SharjahGrandPrix2017.epd [530 positions]<br>
     d. WorldCh2016.epd [260 positions]<br>
     e. TataSteel2017.epd [480 positions]<br>
     f. GashimovMem2016.epd [310 positions]<br>
