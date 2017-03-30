@@ -2,7 +2,7 @@
 
 #### A. Description
 
-Move Ordering Spy is just a python script or equivalent converted exe file that will attempt to measure the effects of move ordering changes in a computer chess engine. It actually tests the engine with a set of specialized epd suite similar to STS-Strategic Test Suite then record how many points it gets and how long its takes to finish the tests.
+It is just a python script or equivalent converted exe file that will attempt to measure the effects of move ordering changes in a computer chess engine. It actually tests the engine with a set of specialized epd suite similar to STS-Strategic Test Suite then record how many points it gets and how long its takes to finish the tests. The engine version which gets a higher point and faster will be considered as the best.
 
 #### B. Usage
 
@@ -46,7 +46,7 @@ Move Ordering Spy is just a python script or equivalent converted exe file that 
 
 #### E. Input EPD
 
-1. The recommended input format for epd is STS or Strategic Test Suite which can be found in the following link below. However I make some changes on this test suite by adding opcodes for moves in uci format and others just for script convenience, I call it STS1-STS15_LAN_v3.epd and it is included in the package. We are grateful to Swaminathan and Dann for creating such fantastic test suite and its idea of a multi move solution with points. This is the [link](https://sites.google.com/site/strategictestsuite/) to the STS.
+1. The recommended input format for epd is STS or Strategic Test Suite which can be found [here](https://sites.google.com/site/strategictestsuite/). However I make some changes on this test suite by adding opcodes for moves in uci format and others just for script convenience, I call it STS1-STS15_LAN_v3.epd and it is included in the package. We are grateful to Swaminathan and Dann for creating such fantastic test suite and its idea of a multi move solution with points.
 
 2. I am generating this kind of epd format from latest strong grandmaster games from tournaments such as London Chess Classic 2016, TataSteel 2017, Sharjah Grand Prix 2017 and World Championships 2016 and others. I will upload these positions once I get some of them.
 
