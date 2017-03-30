@@ -55,7 +55,7 @@ https://sites.google.com/site/strategictestsuite/
     
 4. EPD interpretation
 
-  r1b2rk1/1pp1qppp/2nb1n2/p3p1N1/2B1N3/2PP4/PP2QPPP/R1B1K2R w KQ - acd 23; bm h4; eco "C65"; Ae "Stockfish 260317 64 POPCNT"; c6 "64 47 34 22"; c7 "h4 Nxf6+ g4 Bd2"; c8 "10 7 5 3"; c9 "h2h4 e4f6 g2g4 c1d2";<br>
+  <code>r1b2rk1/1pp1qppp/2nb1n2/p3p1N1/2B1N3/2PP4/PP2QPPP/R1B1K2R w KQ - acd 23; bm h4; eco "C65"; Ae "Stockfish 260317 64 POPCNT"; c6 "64 47 34 22"; c7 "h4 Nxf6+ g4 Bd2"; c8 "10 7 5 3"; c9 "h2h4 e4f6 g2g4 c1d2";</code>
 
    acd = analysis depth
    bm = best move<br>
@@ -80,16 +80,17 @@ Only engines that supports UCI protocol are supported on this script, and that e
 ### H. Example output from summary
 
 <pre>
-Test File                 : LondonChessClassic2016_v3.epd
-Total Positions           : 350
-Evaluated Positions       : 350
-Max Evaluated Points      : 3500
+Test File                 : move_ordering_suite.epd
+Total Positions           : 2019
+Evaluated Positions       : 2019
+Max Evaluated Points      : 20190
 Search Depth              : 12
 Hash (mb)                 : 128
 Threads                   : 1
 
 Engine                              Pts   MaxPts  Pts(%)  Time(ms)
-Deuterium v2017.1.35.353           2153     3500   61.51    106679
+Deuterium v2017.1.35.353          13105    20190   64.91    653066
+Deuterium v2017.1.35.358          13142    20190   65.09    622520
 </pre>
 
 
