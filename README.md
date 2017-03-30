@@ -4,33 +4,33 @@ Move Ordering Spy is just a python script or equivalent converted exe file that 
 
 B. Usage
 
-move_ordering_spy.py --engine [engine name] --epd [test epd file] --depth [depth] --logging [number 0 or 1]
+<code>move_ordering_spy.py --engine [engine name] --epd [test epd file] --depth [depth] --logging [number 0 or 1]</code>
 
 C. Example
 
 1. If your engine is Pluto.exe and your test file is STS.epd and you want Pluto to be tested at depth 12.
 
-move_ordering_spy.py --engine Pluto.exe --epd STS.epd --depth 12
+<code>move_ordering_spy.py --engine Pluto.exe --epd STS.epd --depth 12</code>
 
 2. If you want to see the engine log you can use the following command line.
 
-move_ordering_spy.py --engine Pluto.exe --epd STS.epd --depth 12 --logging 1
+<code>move_ordering_spy.py --engine Pluto.exe --epd STS.epd --depth 12 --logging 1</code>
 
 3. If you want the engine to use 128 MB use the option --hash [value in mb]
 
-move_ordering_spy.py --engine Pluto.exe --epd STS.epd --depth 12 --logging 1 --hash 128
+<code>move_ordering_spy.py --engine Pluto.exe --epd STS.epd --depth 12 --logging 1 --hash 128</code>
 
 4. If you want the engine to use 2 threads use the option --threads [number]
 
-move_ordering_spy.py --engine Pluto.exe --epd STS.epd --depth 12 --logging 1 --hash 128 --threads 2
+<code>move_ordering_spy.py --engine Pluto.exe --epd STS.epd --depth 12 --logging 1 --hash 128 --threads 2</code>
 
 5. It also supports paths for engine and epd file
 
-move_ordering_spy.py --engine "c:\chess\engines\UCI\Pluto\Pluto.exe" --epd "c:\chess\Test Suite\STS\STS.epd" --depth 12
+<code>move_ordering_spy.py --engine "c:\chess\engines\UCI\Pluto\Pluto.exe" --epd "c:\chess\Test Suite\STS\STS.epd" --depth 12</code>
 
 6. If you don't have python installed, and you are using windows you can use the exe file instead.
 
-move_ordering_spy.exe --engine Pluto.exe --epd STS.epd --depth 12 --logging 1
+<code>move_ordering_spy.exe --engine Pluto.exe --epd STS.epd --depth 12 --logging 1</code>
 
 
 D. Output Files
