@@ -165,11 +165,12 @@ def main(argv):
     nThreads = 1
     total_pts = 0
     total_time = 0
+    top_one = 0
     max_evaluated_pos_pts = 0
 
     # Read command line options
     try:
-        opts, args = getopt.getopt(argv, "e:f:d:l:", ["engine=", "epd=", "depth=", "logging=", "hash=", "threads="])
+        opts, args = getopt.getopt(argv, "e:f:d:l:h:t:", ["engine=", "epd=", "depth=", "logging=", "hash=", "threads="])
     except getopt.GetoptError as err:
         print str(err)
         usage()
@@ -184,9 +185,9 @@ def main(argv):
             depth = max(1, depth)
         elif opt in ("-l", "--logging"):
             islogging = int(arg)
-        elif opt in ("--hash"):
+        elif opt in ("h", "--hash"):
             nHash = int(arg)
-        elif opt in ("--threads"):
+        elif opt in ("t", "--threads"):
             nThreads = int(arg)
 
     if islogging > 0:
@@ -268,6 +269,8 @@ def main(argv):
                 if n == bm:
                     best_i = i
                     found = True
+                    if i == 0:
+                        top_one += 1
                     break
             if found:
                 logging.info('success!!')
@@ -285,6 +288,10 @@ def main(argv):
     rate = 0.0
     if max_evaluated_pos_pts:
         rate = float(100*total_pts)/max_evaluated_pos_pts
+
+    top_one_rate = 0.0
+    if evaluated_epd_cnt:
+        top_one_rate = float(100*top_one)/evaluated_epd_cnt
     
     # Write results summary to console
     print('Total Positions        : %d' %(total_epd_lines))
@@ -311,13 +318,14 @@ def main(argv):
         f.write('Hash (mb)                 : %s\n' %(nHash))
         f.write('Threads                   : %s\n\n' %(nThreads))
         
-        f.write('{:<32} {:>6} {:>8} {:>7} {:>9}\n'.format('Engine', 'Pts', 'MaxPts', 'Pts(%)', 'Time(ms)'))
+        f.write('{:<32} {:>6} {:>8} {:>7} {:>9} {:>7}\n'.format('Engine', 'Pts', 'MaxPts', 'Pts(%)', 'Time(ms)', 'Top1(%)'))
 
-        f.write('{:<32} {:>6} {:>8} {:>7.2f} {:>9}\n\n\n'.format(eng_name_id,
+        f.write('{:<32} {:>6} {:>8} {:>7.2f} {:>9} {:>7.2f}\n\n\n'.format(eng_name_id,
                                                                 total_pts,
                                                                 max_evaluated_pos_pts,
                                                                 rate,
-                                                                total_time))
+                                                                total_time,
+                                                                top_one_rate))
 
     print('Done!!')
 
