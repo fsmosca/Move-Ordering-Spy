@@ -65,8 +65,8 @@ https://sites.google.com/site/strategictestsuite/
    Ae = analyzing engine<br>
    c6 = comment no. 6, these are the values of the analyzing engine (Ae opcode) search score in centipawn, the first (64) is the score for top 1 move or bm h4. 47 is for the top 2 move and so on<br>
    c7 = comment no. 7, these are the moves in SAN-Standard Algebraic notation format<br>
-   c8 = comment no. 8, these are the points of this position, for example if the engine under tests would choose g4 as its best move then it will get 5 points for this test positions<br>
-   c9 = comment no. 9, these are the best moves in uci protocol move format, this is similar to the values in c7 opcodes<br>
+   c8 = comment no. 8, these are the points of this position, for example if the engine under tests would choose g4 as its best move then it will get 5 points for this test position<br>
+   c9 = comment no. 9, these are the best moves in uci protocol move format, this is similar to the values in c7 opcode<br>
 
 ### F. Script idea
 
