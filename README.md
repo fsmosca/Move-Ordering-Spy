@@ -42,9 +42,7 @@ Move Ordering Spy is just a python script or equivalent converted exe file that 
 
 #### E. Input EPD
 
-1. The recommended input format for epd is STS or Strategic Test Suite which can be found in the following link below. However I make some changes on this test suite by adding opcodes for moves in uci format and others just for script convenience, I call it STS1-STS15_LAN_v3.epd and it is included in the package. We are grateful to Swaminathan and Dann for creating such fantastic test suite and its idea of a multi move solution with points.
-
-https://sites.google.com/site/strategictestsuite/
+1. The recommended input format for epd is STS or Strategic Test Suite which can be found in the following link below. However I make some changes on this test suite by adding opcodes for moves in uci format and others just for script convenience, I call it STS1-STS15_LAN_v3.epd and it is included in the package. We are grateful to Swaminathan and Dann for creating such fantastic test suite and its idea of a multi move solution with points. This is the link to the [STS](https://sites.google.com/site/strategictestsuite/ "STS-Strategic Test Suite").
 
 2. I am generating this kind of epd format from latest strong grandmaster games from tournaments such as London Chess Classic 2016, TataSteel 2017, Sharjah Grand Prix 2017 and World Championships 2016 and others. I will upload these positions once I get some of them.
 
@@ -73,9 +71,7 @@ https://sites.google.com/site/strategictestsuite/
 
 #### F. Script idea
 
-This script was created based from the discussion in CCC on testing move ordering improvement.
-
-http://talkchess.com/forum/viewtopic.php?topic_view=threads&p=710117&t=63555
+This script was created based from the [discussion in CCC](http://talkchess.com/forum/viewtopic.php?topic_view=threads&p=710117&t=63555) on testing move ordering improvement.
 
 #### G. Limitations
 
