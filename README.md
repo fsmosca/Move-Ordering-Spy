@@ -34,6 +34,10 @@ Move Ordering Spy is just a python script or equivalent converted exe file that 
 
 <code>move_ordering_spy.exe --engine Pluto.exe --epd STS.epd --depth 12 --logging 1</code>
 
+    or for shorter option name with Hash at 128 mb and Thread 1
+
+<code>move_ordering_spy.exe -e Pluto.exe -h 128 -t 1 -f STS.epd -d 12 -l 1</code>
+
 
 #### D. Output Files
 
@@ -49,7 +53,7 @@ Move Ordering Spy is just a python script or equivalent converted exe file that 
 3. Epd test suites in the pack
 
     a. STS1-STS15_LAN_v3.epd [1500 positions]  
-    b. move_ordering_spy.epd [3088 positions]  
+    b. move_ordering_spy.epd [3700 positions]  
     
    move_ordering_suite.epd are from positions of games from strong tournaments like WCh2016, LondonCC2016, WChCand2016 and others,    positions were analyzed by Stockfish 260317 64 POPCNT at 3 minutes/pos at multipv 5. The points of every epd (1 to 10) which can be found in c8 opcode, were generated based on search score of Stockfish, only the top 4 are saved in the epd and only those positions whose top 1 moves were not easy (according to Stockfish) were saved. Also the top 1 move should have a score of from -0.5 to +1.5 in order for it to be included in the test set. Position selection start at move 12 till move 30 in every game.
     
@@ -80,17 +84,17 @@ Only engines that supports UCI protocol are supported on this script, and that e
 #### H. Example output from summary
 
 <pre>
-Test File                 : move_ordering_suite.epd
-Total Positions           : 2019
-Evaluated Positions       : 2019
-Max Evaluated Points      : 20190
+Test File                 : LondonChessClassic2016_v3.epd
+Total Positions           : 350
+Evaluated Positions       : 350
+Max Evaluated Points      : 3500
 Search Depth              : 12
 Hash (mb)                 : 128
 Threads                   : 1
 
-Engine                              Pts   MaxPts  Pts(%)  Time(ms)
-Deuterium v2017.1.35.353          13105    20190   64.91    653066
-Deuterium v2017.1.35.358          13142    20190   65.09    622520
+Engine                              Pts   MaxPts  Pts(%)  Time(ms) Top1(%)
+Deuterium v2017.1.35.358           2108     3500   60.23    131757   37.14
+Deuterium v2017.1.35.353           2153     3500   61.51    132585   39.71
 </pre>
 
 
