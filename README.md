@@ -57,15 +57,15 @@ https://sites.google.com/site/strategictestsuite/
 
 <code>r1b2rk1/1pp1qppp/2nb1n2/p3p1N1/2B1N3/2PP4/PP2QPPP/R1B1K2R w KQ - acd 23; bm h4; eco "C65"; Ae "Stockfish 260317 64 POPCNT"; c6 "64 47 34 22"; c7 "h4 Nxf6+ g4 Bd2"; c8 "10 7 5 3"; c9 "h2h4 e4f6 g2g4 c1d2";</code>
 
-   Meaning of opcodes
-   acd = analysis depth<br>
-   bm = best move<br>
-   eco = encyclopedia of chess opening<br>
-   Ae = analyzing engine<br>
-   c6 = comment no. 6, these are the values of engine search score in centipawn, the first (64) is the score for top 1 move or bm h4. 47 is for the top 2 move and so on<br>
-   c7 = comment no. 7, these are the moves in SAN-Standard Algebraic notation format<br>
-   c8 = comment no. 8, these are the points of this position, for example if the engine under tests would choose g4 as its best move then it will get 5 points for this test positions<br>
-   c9 = comment no. 9, these are the best moves in uci protocol move format, this is similar to the values in c7 opcodes<br>
+    Meaning of opcodes
+    acd = analysis depth<br>
+    bm = best move<br>
+    eco = encyclopedia of chess opening<br>
+    Ae = analyzing engine<br>
+    c6 = comment no. 6, these are the values of engine search score in centipawn, the first (64) is the score for top 1 move or bm h4. 47 is for the top 2 move and so on<br>
+    c7 = comment no. 7, these are the moves in SAN-Standard Algebraic notation format<br>
+    c8 = comment no. 8, these are the points of this position, for example if the engine under tests would choose g4 as its best move then it will get 5 points for this test positions<br>
+    c9 = comment no. 9, these are the best moves in uci protocol move format, this is similar to the values in c7 opcodes<br>
 
 ### F. Script idea
 
