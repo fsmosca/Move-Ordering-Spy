@@ -84,17 +84,20 @@ Only engines that supports UCI protocol are supported on this script, and that e
 #### H. Example output from summary
 
 <pre>
-Test File                 : LondonChessClassic2016_v3.epd
-Total Positions           : 350
-Evaluated Positions       : 350
-Max Evaluated Points      : 3500
+Test File                 : move_ordering_spy.epd
+Total Positions           : 3700
+Evaluated Positions       : 3700
+Max Evaluated Points      : 37000
 Search Depth              : 12
 Hash (mb)                 : 128
 Threads                   : 1
 
 Engine                              Pts   MaxPts  Pts(%)  Time(ms) Top1(%)
-Deuterium v2017.1.35.358           2108     3500   60.23    131757   37.14
-Deuterium v2017.1.35.353           2153     3500   61.51    132585   39.71
+Deuterium v2017.1.35.353          24025    37000   64.93   1268722   42.76
+Deuterium v2017.1.35.358          23607    37000   63.80   1227647   41.62
+Deuterium v2017.1.35.359          24155    37000   65.28   1231714   42.73
 </pre>
 
-
+    1. Version 353 is the base version
+    2. Version 358 is from v353 but without killer move 2 slot
+    3. Version 359 is from v353 but has move ordering bonus for captures that attacks the opponent's king
