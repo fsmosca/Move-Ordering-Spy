@@ -62,7 +62,7 @@ https://sites.google.com/site/strategictestsuite/
    acd = analysis depth<br>
    bm = best move<br>
    eco = encyclopedia of chess opening<br>
-   Ae = analyzing engine
+   Ae = analyzing engine<br>
    c6 = comment no. 6, these are the values of the analyzing engine (Ae opcode) search score in centipawn, the first (64) is the score for top 1 move or bm h4. 47 is for the top 2 move and so on<br>
    c7 = comment no. 7, these are the moves in SAN-Standard Algebraic notation format<br>
    c8 = comment no. 8, these are the points of this position, for example if the engine under tests would choose g4 as its best move then it will get 5 points for this test positions<br>
