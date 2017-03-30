@@ -57,7 +57,7 @@ https://sites.google.com/site/strategictestsuite/
 
   <code>r1b2rk1/1pp1qppp/2nb1n2/p3p1N1/2B1N3/2PP4/PP2QPPP/R1B1K2R w KQ - acd 23; bm h4; eco "C65"; Ae "Stockfish 260317 64 POPCNT"; c6 "64 47 34 22"; c7 "h4 Nxf6+ g4 Bd2"; c8 "10 7 5 3"; c9 "h2h4 e4f6 g2g4 c1d2";</code>
 
-   acd = analysis depth
+   acd = analysis depth<br>
    bm = best move<br>
    eco = encyclopedia of chess opening<br>
    c6 = comment no. 6, these are the values of engine search score in centipawn, the first (64) is the score for top 1 move or bm h4. 47 is for the top 2 move and so on<br>
@@ -73,9 +73,7 @@ http://talkchess.com/forum/viewtopic.php?topic_view=threads&p=710117&t=63555
 
 ### G. Limitations
 
-Only engines that supports UCI protocol are supported on this script, and that engine should also support the go depth command. The engine should also send the time info as this is the data that will be used to calculate the total time. Example,
-
-<code>info depth 12 score cp 117 nodes 96197 nps 1577000 time 61 pv f4g5 h6g5</code>
+Only engines that supports UCI protocol are supported on this script, and that engine should also support the go depth command.
 
 ### H. Example output from summary
 
